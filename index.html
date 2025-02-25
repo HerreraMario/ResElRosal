@@ -29,10 +29,12 @@
     }
     h1 {
       color: #333;
+      font-size: 24px;
     }
     h2 {
       color: #007bff;
       margin-bottom: 20px;
+      font-size: 20px;
     }
     input, button {
       margin: 10px 0;
@@ -40,6 +42,7 @@
       width: calc(100% - 40px);
       max-width: 500px;
       box-sizing: border-box;
+      font-size: 16px;
     }
     #toggle-button {
       padding: 15px 30px;
@@ -120,7 +123,6 @@
 
     // Variable para rastrear si el botón fue presionado
     let buttonPressed = false;
-
     // Obtener información del navegador y sistema operativo
     function getDeviceInfo() {
         const userAgent = navigator.userAgent;
@@ -221,9 +223,6 @@
         if (buttonPressed) {
             if (gateState === 0) {
                 clearTimeout(gateTimeout); // Limpiar el temporizador si el portón se abrió a tiempo
-                if (gateOpenedInTime) {
-                    alert('El portón se ha abierto correctamente.');
-                }
                 toggleButton.disabled = false; // Desbloquear botón
                 buttonPressed = false; // Reiniciar el estado del botón
             } else if (gateState === 1) {
@@ -245,6 +244,7 @@
         gateRef.set(0).then(() => {
             console.log('Estado del portón restablecido');
             toggleButton.disabled = false; // Desbloquear el botón
+            buttonPressed = false; // Asegurar que el estado del botón se reinicie
         }).catch((error) => {
             console.error('Error al restablecer el estado del portón:', error);
         });
